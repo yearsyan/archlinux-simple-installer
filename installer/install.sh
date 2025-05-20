@@ -123,7 +123,6 @@ fi
 confirm "$DISK"
 partition_disk "$DISK"
 mount_partitions "$DISK"
-datetimectl
 
 reflector -p https -c China --delay 3 --completion-percent 95 --sort rate --save /etc/pacman.d/mirrorlist
 
