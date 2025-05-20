@@ -2,6 +2,7 @@
 
 set -e
 
+source config.sh
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 hwclock --systohc
 
@@ -12,7 +13,6 @@ locale-gen
 echo 'LANG=en_US.UTF-8' > /etc/locale.conf
 echo 'KEYMAP=us' > /etc/vconsole.conf
 
-HOSTNAME="archlinux"
 echo "$HOSTNAME" > /etc/hostname
 
 
@@ -32,7 +32,6 @@ grub-mkconfig -o /boot/grub/grub.cfg
 systemctl enable NetworkManager
 systemctl enable sshd
 
-USERNAME=user
 useradd -m -s /bin/zsh "USERNAME"
 echo "$USERNAME ALL=(ALL) NOPASSWD: ALL" | tee /etc/sudoers.d/$USERNAME && chmod 440 /etc/sudoers.d/$USERNAME
 

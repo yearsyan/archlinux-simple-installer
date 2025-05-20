@@ -89,7 +89,7 @@ function mount_partitions() {
     lsblk -o NAME,MOUNTPOINT | grep -E "${disk##*/}[12]"
 }
 
-funtion init_pacman() {
+function init_pacman() {
     pacman-key --init
     pacman-key --populate
     pacman -Sy archlinux-keyring
@@ -139,3 +139,4 @@ chmod +x $TARGET_MOUNT/root/chroot_setup.sh
 chmod +x $TARGET_MOUNT/root/user_script.sh
 arch-chroot $TARGET_MOUNT /bin/bash /root/chroot_setup.sh
 
+reboot
