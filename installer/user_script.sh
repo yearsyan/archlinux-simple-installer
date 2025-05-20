@@ -4,36 +4,36 @@ set -e
 
 install_ohmyzsh() {
     if [ -d "$HOME/.oh-my-zsh" ]; then
-        print_color "Oh My Zsh is already installed"
+        echo "Oh My Zsh is already installed"
     else
-        print_color "Installing Oh My Zsh..."
+        echo "Installing Oh My Zsh..."
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-        print_color "Oh My Zsh installation completed"
+        echo "Oh My Zsh installation completed"
     fi
 }
 
 install_plugins() {
     # Install zsh-autosuggestions
     if [ -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
-        print_color "zsh-autosuggestions is already installed"
+        echo "zsh-autosuggestions is already installed"
     else
-        print_color "Installing zsh-autosuggestions..."
+        echo "Installing zsh-autosuggestions..."
         git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-        print_color "zsh-autosuggestions installation completed"
+        echo "zsh-autosuggestions installation completed"
     fi
     
     # Install zsh-syntax-highlighting
     if [ -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]; then
-        print_color "zsh-syntax-highlighting is already installed"
+        echo "zsh-syntax-highlighting is already installed"
     else
-        print_color "Installing zsh-syntax-highlighting..."
+        echo "Installing zsh-syntax-highlighting..."
         git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-        print_color "zsh-syntax-highlighting installation completed"
+        echo "zsh-syntax-highlighting installation completed"
     fi
 }
 
 configure_zshrc() {
-    print_color "Configuring .zshrc file..."
+    echo "Configuring .zshrc file..."
     
     # Backup original .zshrc file
     if [ -f "$HOME/.zshrc" ]; then
@@ -59,7 +59,7 @@ configure_zshrc() {
         fi
     fi
     
-    print_color ".zshrc configuration completed"
+    echo ".zshrc configuration completed"
 }
 
 install_ohmyzsh

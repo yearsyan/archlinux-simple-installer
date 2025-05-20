@@ -92,7 +92,7 @@ function mount_partitions() {
 function init_pacman() {
     pacman-key --init
     pacman-key --populate
-    pacman -Sy archlinux-keyring
+    pacman -Sy --noconfirm archlinux-keyring
 }
 
 # Parse arguments
@@ -134,8 +134,21 @@ genfstab -U $TARGET_MOUNT >> $TARGET_MOUNT/etc/fstab
 
 cp ./chroot_setup.sh $TARGET_MOUNT/root/
 cp ./user_script.sh $TARGET_MOUNT/root/
+cp ./config.sh $TARGET_MOUNT/root/
 chmod +x $TARGET_MOUNT/root/chroot_setup.sh
 chmod +x $TARGET_MOUNT/root/user_script.sh
 arch-chroot $TARGET_MOUNT /bin/bash /root/chroot_setup.sh
 
-reboot
+rm -rf $TARGET_MOUNT/root/chroot_setup.sh
+rm -rf $TARGET_MOUNT/root/user_script.sh
+rm -rf $TARGET_MOUNT/root/config.sh
+
+echo "================================================"
+echo "Arch Linux Installation Completed"
+echo "================================================"
+echo "1. Reboot your system"
+echo "2. Log in with your credentials"
+echo "3. Start using Arch Linux"
+echo "================================================"
+
+
